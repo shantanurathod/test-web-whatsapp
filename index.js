@@ -15,9 +15,13 @@ const server = http.createServer(app);
 socketConnection(server);
 
 const port = process.env.PORT || 3001;
-
+const corsOptions = {
+  origin: "*", // Allow all origins
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allow all methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+};
 //cors setting
-app.use(cors());
+app.use(cors(corsOptions));
 
 //Session Middle-ware
 let uniqueId = uuidv4();
