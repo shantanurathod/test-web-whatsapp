@@ -34,7 +34,9 @@ app.use(
     cookie: { secure: false },
   })
 );
-app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  express.static(path.join(__dirname, "/../test-web-whatsapp-frontend/dist"))
+);
 //handling request get
 // app.get("/", (req, res, next) => {
 //   res.sendFile("public/index.html", { root: __dirname });
@@ -42,7 +44,9 @@ app.use(express.static(path.join(__dirname, "public")));
 // });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(
+    path.join(__dirname, "/../test-web-whatsapp-frontend/dist", "index.html")
+  );
 });
 //login
 // app.get("/login", (req, res) => {

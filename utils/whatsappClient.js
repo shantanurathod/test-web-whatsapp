@@ -15,15 +15,15 @@ class SendMessage {
       authStrategy: new LocalAuth(),
       puppeteer: {
         headless: true,
-        product: "chrome",
-        executablePath: "/usr/bin/chromium-browser",
+        // product: "chrome",
+        // executablePath: "/usr/bin/chromium-browser",
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       },
     });
 
     this.client.on("qr", (qr) => {
       console.log("QR RECEIVED", qr);
-      qrCode.generate(qr, { small: true });
+      // qrCode.generate(qr, { small: true });
       this.socket.emit("qrGenerated", qr);
     });
 
