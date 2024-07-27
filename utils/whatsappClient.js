@@ -3,6 +3,7 @@ const xlsx = require("xlsx");
 const { deleteFile } = require("./deleteFile");
 const path = require("path");
 const qrCode = require("qrcode-terminal");
+const { deleteSessionCache } = require("./deleteSessionCache");
 // const fileInfo = require('../utils/fileInfoVars')
 
 class SendMessage {
@@ -91,10 +92,10 @@ class SendMessage {
               .then(() => {
                 this.socket.emit(
                   "currStatus",
-                  `${this.currentStatus}.message sent to ${contact_number}`
+                  `${this.currentStatus}. message sent to ${contact_number}`
                 );
                 console.log(
-                  `${this.currentStatus}.message sent to ${contact_number}`
+                  `${this.currentStatus}. message sent to ${contact_number}`
                 );
               });
           } else {
@@ -103,10 +104,12 @@ class SendMessage {
             );
           }
         });
-      await this.delay(5 * 1000);
+      await this.delay(1 * 1000);
     }
 
     deleteFile(path);
+    this.socket.emit("processComplete", "All messages are sent");
+    deleteSessionCache();
     return "All messages are sent";
   }
   async oneMsg() {

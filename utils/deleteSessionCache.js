@@ -11,7 +11,7 @@ const deleteFolder = (folderName) => {
   folderName = "../" + folderName;
   rootdir = __dirname.split("/").pop();
   folderPath = path.resolve(rootdir, folderName);
-  console.log(folderPath);
+  // console.log(folderPath);
   // Using the recursive option to delete
   // multiple directories that are nested
   if (fs.existsSync(folderPath)) {
