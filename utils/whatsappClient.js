@@ -13,6 +13,10 @@ class SendMessage {
     this.pause = false;
     this.client = new Client({
       authStrategy: new LocalAuth(),
+      puppeteer: {
+        headless: true,
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      },
     });
 
     this.client.on("qr", (qr) => {
