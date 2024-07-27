@@ -1,11 +1,12 @@
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
+const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const session = require("express-session");
 // const {PATH_TO_SHEET, text, contactColumn, starting, ending, sheeet, nameColumn} = require('./setTimeOutTest.js')
 const { socketConnection } = require("./src/socketConnection");
-const { upload} = require("./middleware/multerMiddleware");
+const { upload } = require("./middleware/multerMiddleware");
 const fileInfo = require("./utils/fileInfoVars");
 
 //server configuration
@@ -33,18 +34,21 @@ app.use(
     cookie: { secure: false },
   })
 );
-
+app.use(express.static(path.join(__dirname, "public")));
 //handling request get
-app.get("/", (req, res, next) => {
-  res.sendFile("public/index.html", { root: __dirname });
-  // res.send("hello mfs")
-});
+// app.get("/", (req, res, next) => {
+//   res.sendFile("public/index.html", { root: __dirname });
+//   // res.send("hello mfs")
+// });
 
-//login
-app.get("/login", (req, res) => {
-  req.session.name = "shancookie";
-  res.send("<h4>Logged in successfully</h4>");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+//login
+// app.get("/login", (req, res) => {
+//   req.session.name = "shancookie";
+//   res.send("<h4>Logged in successfully</h4>");
+// });
 
 //handling file upload request
 app.post("/", upload.single("sheet"), (req, res) => {
@@ -54,10 +58,10 @@ app.post("/", upload.single("sheet"), (req, res) => {
       fileInfo[key] = req.body[key];
     }
   }
-// fileInfo.PATH_TO_SHEET = "../contact_sheets/" + finalFilename;
+  // fileInfo.PATH_TO_SHEET = "../contact_sheets/" + finalFilename;
   //fileInfo["finalFilename"] = finalFilename
   // console.log("FileInfo: ", fileInfo)
-//   console.log("from index: ", fileInfo)
+  //   console.log("from index: ", fileInfo)
   res.status(200).send("File uploaded successfully");
 });
 
