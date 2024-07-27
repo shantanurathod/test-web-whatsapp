@@ -15,8 +15,11 @@ class SendMessage {
       authStrategy: new LocalAuth(),
       puppeteer: {
         headless: true,
-        // product: "chrome",
-        // executablePath: "/usr/bin/chromium-browser",
+        product: process.env.USER === "ubuntu" ? "chrome" : undefined,
+        executablePath:
+          process.env.USER === "ubuntu"
+            ? "/usr/bin/chromium-browser"
+            : undefined,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       },
     });
