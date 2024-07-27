@@ -98,7 +98,9 @@ class SendMessage {
                 );
               });
           } else {
-            console.log("number is not registered to whatsapp");
+            console.log(
+              `${contact_number} number is not registered to whatsapp`
+            );
           }
         });
       await this.delay(5 * 1000);
