@@ -38,9 +38,7 @@ const port = process.env.PORT || 3001;
 //     cookie: { secure: false },
 //   })
 // );
-app.use(
-  express.static(path.join(__dirname, "/../test-web-whatsapp-frontend/dist"))
-);
+app.use(express.static("dist"));
 //handling request get
 // app.get("/", (req, res, next) => {
 //   res.sendFile("public/index.html", { root: __dirname });
