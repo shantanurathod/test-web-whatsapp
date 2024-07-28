@@ -15,29 +15,29 @@ const server = http.createServer(app);
 socketConnection(server);
 
 const port = process.env.PORT || 3001;
-const corsOptions = {
-  origin: "*", // Allow all origins
-  methods: ["GET", "POST", "PUT", "DELETE"], // Allow all methods
-  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
-};
-//cors setting
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "*", // Allow all origins
+//   methods: ["GET", "POST", "PUT", "DELETE"], // Allow all methods
+//   allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+// };
+// //cors setting
+// app.use(cors(corsOptions));
 
 //Session Middle-ware
-let uniqueId = uuidv4();
-app.use(
-  session({
-    name: "SessionCookie",
-    genid: function (req) {
-      console.log("session id created");
-      return uniqueId;
-    }, // use UUIDs for session IDs
-    secret: "Shsh!Secret!",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false },
-  })
-);
+// let uniqueId = uuidv4();
+// app.use(
+//   session({
+//     name: "SessionCookie",
+//     genid: function (req) {
+//       console.log("session id created");
+//       return uniqueId;
+//     }, // use UUIDs for session IDs
+//     secret: "Shsh!Secret!",
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: { secure: false },
+//   })
+// );
 app.use(
   express.static(path.join(__dirname, "/../test-web-whatsapp-frontend/dist"))
 );
@@ -47,11 +47,6 @@ app.use(
 //   // res.send("hello mfs")
 // });
 
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "/../test-web-whatsapp-frontend/dist", "index.html")
-  );
-});
 //login
 // app.get("/login", (req, res) => {
 //   req.session.name = "shancookie";
@@ -59,7 +54,7 @@ app.get("*", (req, res) => {
 // });
 
 //handling file upload request
-app.post("/", upload.single("sheet"), (req, res) => {
+app.post("/api/data", upload.single("sheet"), (req, res) => {
   // console.log("req: ", req.body)
   for (const key in req.body) {
     if (req.body[key]) {
