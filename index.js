@@ -53,6 +53,10 @@ app.use(
 //   res.send("<h4>Logged in successfully</h4>");
 // });
 
+app.get("/health", (req, res) => {
+  res.send("good baby");
+});
+
 //handling file upload request
 app.post("/api/data", upload.single("sheet"), (req, res) => {
   // console.log("req: ", req.body)
