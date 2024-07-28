@@ -63,6 +63,7 @@ app.post("/api/data", upload.single("sheet"), (req, res) => {
       fileInfo[key] = req.body[key];
     }
   }
+  //
   // fileInfo.PATH_TO_SHEET = "../contact_sheets/" + finalFilename;
   //fileInfo["finalFilename"] = finalFilename
   // console.log("FileInfo: ", fileInfo)
