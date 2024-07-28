@@ -38,10 +38,10 @@ const port = process.env.PORT || 3001;
 //     cookie: { secure: false },
 //   })
 // );
-app.use(express.static("dist"));
+app.use(express.static("public"));
 //handling request get
 app.get("/", (req, res, next) => {
-  res.sendFile("dist/index.html", { root: __dirname });
+  res.sendFile("public/index.html", { root: __dirname });
   // res.send("hello mfs")
 });
 
