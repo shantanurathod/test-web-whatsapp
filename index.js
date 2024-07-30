@@ -40,10 +40,10 @@ const port = process.env.PORT || 3001;
 // );
 app.use(express.static("public"));
 //handling request get
-app.get("/", (req, res, next) => {
-  res.sendFile("public/index.html", { root: __dirname });
-  // res.send("hello mfs")
-});
+// app.get("/", (req, res, next) => {
+//   res.sendFile("public/index.html", { root: __dirname });
+//   // res.send("hello mfs")
+// });
 
 //login
 // app.get("/login", (req, res) => {
